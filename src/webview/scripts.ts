@@ -262,6 +262,73 @@ export function getScripts(): string {
             });
         }
 
+
+
+
+
+
+
+
+
+        function copyStructureWithContent() {
+    const structureBtn = document.getElementById('structureWithContentBtn');
+    const originalText = structureBtn.textContent;
+
+    const selectedFiles = getSelectedFiles();
+    if (selectedFiles.length === 0) {
+        vscode.postMessage({
+            type: 'error',
+            message: 'Please select at least one file to copy.'
+        });
+        return;
+    }
+
+    // Show loading state
+    structureBtn.disabled = true;
+    structureBtn.innerHTML = '<span class="loading-spinner"></span> Copying...';
+
+    vscode.postMessage({ 
+        type: 'copyStructureWithContent', 
+        selectedFiles: selectedFiles 
+    });
+
+    // Listen for copy success message
+    window.addEventListener('message', function copyHandler(event) {
+        if (event.data.type === 'copySuccess') {
+            structureBtn.innerHTML = '✓ Copied!';
+            setTimeout(() => {
+                structureBtn.disabled = false;
+                structureBtn.textContent = originalText;
+            }, 2000);
+            window.removeEventListener('message', copyHandler);
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
             const mainContent = document.getElementById('mainContent');

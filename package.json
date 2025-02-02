@@ -2,7 +2,7 @@
   "name": "copy-mate",
   "displayName": "Copy Mate",
   "description": "Copy code from multiple files with file locations by a single click.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "publisher": "SwamyPenupothula",
   "icon": "icon.png",
   "engines": {
