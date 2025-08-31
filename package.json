@@ -23,8 +23,22 @@
       {
         "command": "copy-mate",
         "title": "Copy Mate"
+      },
+      {
+        "command": "copy-mate.copyFileOrFolder",
+        "title": "Copy Structure and Content",
+        "category": "Copy Mate"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "copy-mate.copyFileOrFolder",
+          "when": "resourceScheme == file",
+          "group": "copy"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
